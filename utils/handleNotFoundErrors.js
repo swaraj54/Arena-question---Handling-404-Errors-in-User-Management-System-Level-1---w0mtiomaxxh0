@@ -6,7 +6,7 @@ The function should set the status of the response to 404 and send a JSON respon
 
 const handleNotFoundErrors = (res, errorMessage) => {
     //Write your code here
-    res.status(400).json({ error: errorMessage })
+    res.status(404).json({ error: errorMessage })
 };
 
 module.exports = handleNotFoundErrors;

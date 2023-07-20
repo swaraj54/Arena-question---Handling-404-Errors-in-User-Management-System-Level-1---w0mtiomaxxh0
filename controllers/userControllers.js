@@ -16,7 +16,7 @@ async function getAllUsers(req, res) {
     const users = await User.find();
     res.json(users)
   } catch (error) {
-    handleNotFoundErrors(res, "Users not found")
+    handleNotFoundErrors(res, "User not found")
   }
 }
 
