@@ -6,7 +6,7 @@ const handleNotFoundErrors = require("../utils/handleNotFoundErrors");
 
 // Controller with error handling
 const getAllUsers = handleAsyncErrors(async (req, res) => {
-  const users = await User.find();
+  const users = await User.find({});
   //Implement 404 error handling
   if (!users) {
     handleNotFoundErrors(res, "User not found")

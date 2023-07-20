@@ -4,7 +4,7 @@ const handleAsyncErrors = (fn) => {
         try {
             await fn(req, res, next);
         } catch (error) {
-            res.status(500).json({ error: "Internal server error" });
+            return res.status(500).json({ error: "Internal server error" });
         }
     };
 };
