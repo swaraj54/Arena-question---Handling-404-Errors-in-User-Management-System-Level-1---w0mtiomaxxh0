@@ -4,8 +4,7 @@ const users = require('./data/users');
 async function seedWithDummyData() {
     try {
         // CLEAR DB
-        await User.deleteMany({});
-
+        await User.deleteMany({}).exec();
         for (let user of users) {
             await User.create(user);
         }

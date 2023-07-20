@@ -4,8 +4,9 @@ You need to implement an error handler function, "handleNotFoundErrors", that wi
 The function should set the status of the response to 404 and send a JSON response with an "error" key containing the provided error message. This error handler will be responsible for handling cases where the requested resource is not found, providing a meaningful error message to the client.
 */
 
-const handleNotFoundErrors = (/*Add Necessary parameters*/) => {
+const handleNotFoundErrors = (res, errorMessage) => {
     //Write your code here
+    res.status(400).json({ error: errorMessage })
 };
 
 module.exports = handleNotFoundErrors;
