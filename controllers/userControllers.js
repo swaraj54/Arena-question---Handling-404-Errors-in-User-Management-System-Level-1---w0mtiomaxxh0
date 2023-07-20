@@ -5,41 +5,45 @@ const handleNotFoundErrors = require("../utils/handleNotFoundErrors");
 // Make all the necessary changes to the controller such that it uses the error handlers to handle 404 errors
 
 // Controller with error handling
-// const getAllUsers = handleAsyncErrors(async (req, res) => {
-//   const users = await User.find();
-//   //Implement 404 error handling
-//   res.status(200).json(users);
-// });
-
-async function getAllUsers(req, res) {
-  try {
-    const users = await User.find();
-    res.json(users)
-  } catch (error) {
+const getAllUsers = handleAsyncErrors(async (req, res) => {
+  const users = await User.find();
+  //Implement 404 error handling
+  if (!users) {
     handleNotFoundErrors(res, "User not found")
   }
-}
+  res.status(200).json(users);
+});
 
-// const getUserByID = handleAsyncErrors(async (req, res) => {
-//   const { id } = req.params;
-//   const user = await User.findById(id);
-//   //Implement 404 error handling
-//   res.status(200).json(user);
-// });
+// async function getAllUsers(req, res) {
+//   try {
+//     const users = await User.find();
+//     res.json(users)
+//   } catch (error) {
+//   }
+// }
 
-async function getUserByID(req, res) {
-  try {
-    const userId = req.params.id;
-    const user = await User.findById(userId);
-    if (user) {
-      res.json(user)
-    } else {
-      handleNotFoundErrors(res, "User not found")
-    }
-  } catch (error) {
+const getUserByID = handleAsyncErrors(async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  //Implement 404 error handling
+  if (!user) {
     handleNotFoundErrors(res, "User not found")
   }
-}
+  res.status(200).json(user);
+});
+
+// async function getUserByID(req, res) {
+//   try {
+//     const userId = req.params.id;
+//     const user = await User.findById(userId);
+//     if (user) {
+//       res.json(user)
+//     } else {
+//     }
+//   } catch (error) {
+//     handleNotFoundErrors(res, "User not found")
+//   }
+// }
 
 
 
