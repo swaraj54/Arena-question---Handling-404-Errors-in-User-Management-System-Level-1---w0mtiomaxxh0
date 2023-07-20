@@ -8,7 +8,7 @@ const handleNotFoundErrors = require("../utils/handleNotFoundErrors");
 const getAllUsers = handleAsyncErrors(async (req, res) => {
   const users = await User.find({});
   //Implement 404 error handling
-  if (!users) {
+  if (!users.length) {
     handleNotFoundErrors(res, "User not found")
   }
   res.status(200).json(users);
